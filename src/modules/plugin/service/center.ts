@@ -189,12 +189,16 @@ export class PluginCenterService {
    * @returns
    */
   async getInstance(content: string) {
-    let _instance;
-    const script = `
-        ${content} 
+    try {
+      let _instance;
+      const script = `
+        ${content}
         _instance = Plugin;
     `;
-    eval(script);
-    return _instance;
+      eval(script);
+      return _instance;
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
